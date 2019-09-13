@@ -1,6 +1,8 @@
 ### Как использовать этот репозиторий
 
 git clone --recurse-submodules <репозиторий> 
+git config --global user.name "Stanislav Minenko"
+git config --global user.email "cheeezcake@yandex.ru"
 
 ### Как запустить тесты из репозитория
 
