@@ -109,30 +109,41 @@ namespace Lexer
 			
         }
     }
-    
-    public class IdentLexer : Lexer
-    {
-        private string parseResult;
-        protected StringBuilder builder;
-    
-        public string ParseResult
-        {
-            get { return parseResult; }
-        }
-    
-        public IdentLexer(string input) : base(input)
-        {
-            builder = new StringBuilder();
-        }
 
-        public override bool Parse()
-        { 
-            throw new NotImplementedException();
-        }
-       
-    }
+	public class IdLexer : Lexer
+	{
 
-    public class IntNoZeroLexer : IntLexer
+		protected System.Text.StringBuilder intString;
+		private string parseResult;
+
+		public IdLexer(string input)
+			: base(input)
+		{
+			intString = new System.Text.StringBuilder();
+		}
+
+		public override bool Parse()
+		{
+        {
+			NextCh();
+			if (!char.IsLetter(currentCh) && currentCh != '_')
+			{
+				Error();
+	}
+			while (char.IsLetter(currentCh) || currentCh == '_' || char.IsDigit(currentCh))
+			{
+				NextCh();
+}
+			if (currentCharValue != -1)
+			{
+				Error();
+			}
+			parseResult = inputString;
+			return true;
+		}
+	}
+
+	public class IntNoZeroLexer : IntLexer
     {
         public IntNoZeroLexer(string input)
             : base(input)
